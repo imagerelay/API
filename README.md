@@ -32,7 +32,7 @@ Identify your app
 -----------------
 
 You must include a `User-Agent` header with the name of your application and a link to it or your email address so 
-we can get in touch in case you're doing something wrongor something great. Here's an example:
+we can get in touch in case you're doing something wrong or something great. Here's an example:
 
     User-Agent: MyCompany (http://www.mycompany.com)
 
