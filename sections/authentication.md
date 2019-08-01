@@ -36,7 +36,9 @@ OAuth 2
 
         Authorization: OAuth THE_ACCESS_TOKEN
 
-Once you get an access token, try it out, you can make a request to get information about the user that just authorized you, by making an authenticated request to `GET https:\\[your company].imagerelay.com\api\v2\users\me.json`
+7. Once you get an access token, try it out, you can make a request to get information about the user that just authorized you, by making an authenticated request to 
+
+		GET https://api.imagerelay.com/api/v2/users/me.json
 
 
 End Points
