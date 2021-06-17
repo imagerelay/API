@@ -3,68 +3,69 @@ Keywording
 
 Keywording allows you to add searchable keywords to your assets.
 
+_**Note:** Keywords and tags are the same thing and are interchangeable throughout all our documentation._
 
-Keyword Sets
+
+Keyword/Tag Sets
 ============
-
-Keyword sets are groups of keywords that can be associated with an asset.
+Keyword sets are groups of keywords that can be associated with an asset
 
 Get Keyword Sets
 ----------------
-* `GET /keyword_sets.json` will return `200 OK` and the API user's list of keyword sets.
+* `GET /keyword_sets.json` will return `200 OK` and the authenticated user's list of keyword sets given their permissions group allows for metadata access.
 
-We will return 100 files per page. If the result set has 100 files, it's your responsibility to check the next page to see if there are any more keyword sets -- you do this by adding &page=2 to the query, then &page=3 and so on.
+We will return 100 keyword sets per page. If the result set has 100 keyword sets, it's your responsibility to check the next page to see if there are any more keyword sets -- you do this by adding `&page=2` to the query, then `&page=3` and so on.
 
 ```json
 [
   {
-	"id": 18,
-	"name": "Test",
-	"created_at": "2015-06-15T11:30:21Z",
-	"updated_at": "2015-06-15T11:30:21Z",
-	"deleted_at": null
+    "id": "<keyword_set_id1>",
+    "name": "<keyword_set_name>",
+    "created_at": "2015-06-15T11:30:21Z",
+    "updated_at": "2015-06-15T11:30:21Z",
+    "deleted_at": null
   },
   {
-    "id": 17,
-    "name": "Test 2",
+    "id": "<keyword_set_id2>",
+    "name": "<keyword_set_name>",
     "created_at": "2015-06-12T18:21:43Z",
     "updated_at": "2015-06-12T18:22:07Z",
     "deleted_at": null
-  },
+  }
 ]
 ```
 
 Get Keyword Set
 ---------------
-* `GET /keyword_sets/555.json` will return `200 OK` and the requested keyword set where 555 represents the id of the keyword set requested.
+* `GET /keyword_sets/<keyword_set_id>.json` will return `200 OK` and the specified keyword set.
 
 ```json
 {
-    "id": 555,
-    "name": "Test",
-    "created_at": "2015-06-15T11:30:21Z",
-    "updated_at": "2015-06-15T11:30:21Z",
-	"deleted_at": null
+  "id": "<keyword_set_id>",
+  "name": "<keyword_set_name>",
+  "created_at": "2015-06-15T11:30:21Z",
+  "updated_at": "2015-06-15T11:30:21Z",
+  "deleted_at": null
 }
 ```
 
 Create Keyword Set
 ------------------
-* `POST /keyword_sets.json` will create a new keyword set.
+* `POST /keyword_sets.json` will create a new keyword set. When a keyword set is created, it will be initially empty. Then, individual keywords can be created and added to the keyword set. See [Create Keyword](https://github.com/ofelcan164/API/blob/Improve-Docs/sections/keywording.md#create-keyword).
 
 ```json
 {
-	"name":"Sample API Keyword Set"
+	"name":"<new_keyword_set_name>"
 }
 ```
 
-We will return `201 CREATED` and a representation of the new keyword set.
+We will return `201 Created` and a JSON representation of the new keyword set.
 
 
 ```json
 {
-  "id": 19,
-  "name": "Sample API Keyword Set",
+  "id": "<new_keyword_set_id>",
+  "name": "<new_keyword_set_name>",
   "created_at": "2015-06-16T08:52:12Z",
   "updated_at": "2015-06-16T08:52:12Z",
   "deleted_at": null
@@ -73,18 +74,18 @@ We will return `201 CREATED` and a representation of the new keyword set.
 
 Update Keyword Set
 ------------------
-* `PUT /keyword_sets/19.json` will update a keyword set.
+* `PUT /keyword_sets/<keyword_set_id>.json` will update the `name` of the specified keyword set.
 ```json
 {
-	"name":"New Keyword Set Name"
+	"name":"<new_keyword_set_name>"
 }
 ```
-Will return `200 OK` and a representation of the keyword set.
+We will return `200 OK` and a JSON representation of the specified keyword set.
 
 ```json
 {
-  "id": 19,
-  "name": "New Keyword Set Name",
+  "id": "<keyword_set_id>",
+  "name": "<new_keyword_set_name>",
   "created_at": "2015-06-16T08:52:12Z",
   "updated_at": "2015-06-16T08:52:12Z",
   "deleted_at": null
@@ -93,30 +94,32 @@ Will return `200 OK` and a representation of the keyword set.
 
 Delete Keyword Set
 -------------------
-* `DELETE /keyword_sets/19.json` will delete a keyword set and return `204 NO-CONTENT`.
+* `DELETE /keyword_sets/<keyword_set_id>.json` will delete the specified keyword set and return `204 No Content` upon success. All of the keyword set's associated keywords/tags will also be deleted.
 
-Keywords
+_**Note:** If identical keywords exists in multiple keyword sets, only the keywords in the deleted set will be deleted._
+
+Keywords/Tags
 ========
 
-Keywords are associated with keyword sets and are the searchable asset terms.
+Keywords are associated with keyword sets and are searchable.
 
 Get Keywords
 ------------
-* `GET /keyword_sets/18/keywords.json` will return `200 OK` and a list of keywords associated with a keyword set.
+* `GET /keyword_sets/<keyword_set_id>/keywords.json` will return `200 OK` and a list of keywords/tags associated with the specified keyword set.
 
 ```json
 [
   {
-    "id": 72,
-    "keyword_set_id": 18,
-    "name": "Color",
+    "id": "<keyword_id1>",
+    "keyword_set_id": "<keyword_set_id>",
+    "name": "<keyword1>",
     "created_at": "2015-06-15T12:34:36Z",
     "updated_at": "2015-06-15T14:05:34Z"
   },
   {
-    "id": 75,
-    "keyword_set_id": 18,
-    "name": "Size",
+    "id": "<keyword_id2>",
+    "keyword_set_id": "<keyword_set_id>",
+    "name":"<keyword2>",
     "created_at": "2015-06-16T08:59:48Z",
     "updated_at": "2015-06-16T08:59:48Z"
   },
@@ -125,13 +128,13 @@ Get Keywords
 
 Get Keyword
 -----------
-* `GET /keyword_sets/18/keywords/72.json` will return `200 OK` and a representation of the keyword requested.
+* `GET /keyword_sets/<keyword_set_id>/keywords/<keyword_id>.json` will return `200 OK` and a representation of the specified keyword requested.
 
 ```json
 {
-	"id": 72,
-	"keyword_set_id": 18,
-	"name": "Color",
+	"id": "<keyword_id>",
+	"keyword_set_id": "<keyword_set_id>",
+	"name": "<keyword>",
 	"created_at": "2015-06-15T12:34:36Z",
 	"updated_at": "2015-06-15T14:05:34Z"
 }
@@ -139,21 +142,21 @@ Get Keyword
 
 Create Keyword
 --------------
-* `POST /keyword_sets/18/keywords.json` will create a new keyword and associate it with a keyword set.  The number `18` in the request represents the ID of the keyword set you want to add the keyword to.
+* `POST /keyword_sets/<keyword_set_id>/keywords.json` will create a new keyword and associate it with the specified keyword set.
 
 ```json
 {
-	"name":"New Keyword"
+	"name":"<new_keyword>"
 }
 ```
 
-We will return `201 CREATED` and a representation of the new keyword
+We will return `201 Created` and a JSON representation of the new keyword
 
 ```json
 {
-  "id": 77,
-  "keyword_set_id": 18,
-  "name": "New Keyword",
+  "id": "<keyword_id>",
+  "keyword_set_id": "<keyword_set_id>",
+  "name": "<new_keyword>",
   "created_at": "2015-06-16T09:07:30Z",
   "updated_at": "2015-06-16T09:07:30Z"
 }
@@ -161,18 +164,21 @@ We will return `201 CREATED` and a representation of the new keyword
 
 Update Keyword
 --------------
-* `PUT /keyword_sets/18/keywords/77.json` will update a keyword where `18` represents the ID of the keyword set and `77` represents the ID of the keyword to be updated.
+* `PUT /keyword_sets/<keyword_set_id>/keywords/<keyword_id>.json` will update the specified keyword.
+
 ```json
 {
-	"name":"Updated Keyword"
+	"name":"<updated_keyword>"
 }
 ```
-We will return `200 OK` and a representation of the updated keyword.
+
+We will return `200 OK` and a JSON representation of the updated keyword.
+
 ```json
 {
-  "id": 77,
-  "keyword_set_id": 18,
-  "name": "Updated Keyword",
+  "id": "<keyword_id>",
+  "keyword_set_id": "<keyword_set_id>",
+  "name": "<updated_keyword>",
   "created_at": "2015-06-16T09:07:30Z",
   "updated_at": "2015-06-16T09:07:30Z"
 }
@@ -180,4 +186,4 @@ We will return `200 OK` and a representation of the updated keyword.
 
 Delete Keyword
 --------------
-* `DELETE /keyword_sets/19/keywords/77.json` will delete a keyword and return `204 NO-CONTENT`.
+* `DELETE /keyword_sets/<keyword_set_id>/keywords/<keyword_id>.json` will delete the specified keyword and return `204 No Content`.

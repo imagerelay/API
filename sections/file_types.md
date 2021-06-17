@@ -1,27 +1,27 @@
 File Types
 ==========
 
-Each file in Image Relay is assigned a file type. Different file types have different sets of metadata associated with them.
+Each file in Image Relay is assigned a file type. Different file types have different sets of metadata terms associated with them.
 
-Note that on the web, this is known as a Metadata Template. Not all plans have the ability to create new templates and alter the terms associated with your default template. Please contact support@imagerelay.com if you have questions about your plan features.
+_**Note:** On the web, file types are referred to interchangeably with Metadata Templates. Not all plans have the ability to create new templates and alter the terms associated with your default template. Accounts require `Admin Access to Metadata Tools` for this functionality to be accessible. Please contact support@imagerelay.com if you have questions about your plan features._
 
 Get File Types
 --------------
 
-* `GET /file_types.json` will return all the file types for the account.
+* `GET /file_types.json` will return all the file types for the account given that the authenticated user is within a permission group with metadata access.
 
 ```json
 [
   {
-    "name":"Action A1",
-    "description":"NaN",
+    "name":"<file_type_name1>",
+    "description":"",
     "created_on":"2008-05-18T20:16:52Z",
     "updated_on":"2013-01-07T17:06:14Z",
-    "id":149,
+    "id":"<file_type_id>",
     "terms":
       [
         {
-          "name":"Keywords",
+          "name":"<metaterm_name1>",
           "position":1,
           "meta_name":"",
           "display_in_download":null,
@@ -29,10 +29,10 @@ Get File Types
           "metaterm_options": [],
           "created_on":"2012-06-08T12:44:38Z",
           "updated_on":"2012-06-08T12:44:38Z",
-          "id":1378
+          "id":"<term_id>"
          },
          {
-           "name":"Copyright",
+           "name":"<metaterm_name2>",
            "position":2,
            "meta_name":"",
            "display_in_download":null,
@@ -40,27 +40,28 @@ Get File Types
            "metaterm_options": [],
            "created_on":"2012-06-08T12:44:38Z",
            "updated_on":"2012-06-08T12:44:38Z",
-           "id":1379
+           "id":"<term_id>"
          },
       ]
   },
   {
-    "name":"Meta Data",
-    "description":"Testing Excel",
+    "name":"<file_type_name2>",
+    "description":"",
     "created_on":"2009-05-06T10:48:00Z",
     "updated_on":"2009-05-06T12:43:30Z",
-    "id":194,
+    "id":"<file_type_id>",
     "terms":
       [
         {
-          "name":"Title",
+          "name":"<metaterm_name>",
           "position":1,
           "meta_name":"Title",
           "display_in_download":null,
           "field_type": "text_field",
           "metaterm_options": [],
           "created_on":"2009-05-06T10:48:00Z",
-          "updated_on":"2009-05-06T10:48:00Z","id":1179
+          "updated_on":"2009-05-06T10:48:00Z",
+          "id":"<term_id>"
         }
       ]
   }
@@ -70,84 +71,44 @@ Get File Types
 Get File Type
 -------------
 
-* `GET /file_types/555.json` will return the specified file type.
+* `GET /file_types/<file_type_id>.json` will return the specified file type.
 
 ```json
 {
- "name":"Action A1",
- "description":"A File Type",
- "created_on":"2008-05-18T20:16:52Z"
- ,"updated_on":"2013-01-07T17:06:14Z",
- "id":555,
- "terms":
-   [
-     {
-       "name":"Keywords",
-       "position":1,
-       "meta_name":"",
-       "display_in_download":null,
-       "field_type": "text_field",
-       "metaterm_options": [],
-       "created_on":"2012-06-08T12:44:38Z",
-       "updated_on":"2012-06-08T12:44:38Z","id":1378
-     },
-     {
-       "name":"Copyright",
-       "position":2,"meta_name":"",
-       "display_in_download":null,
-       "field_type": "text_field",
-       "metaterm_options": [],
-       "created_on":"2012-06-08T12:44:38Z",
-       "updated_on":"2012-06-08T12:44:38Z",
-       "id":1379
-     }
-   ]
-}
-```
-
-Field Types and Metaterm Options
--------------
-
-The `field_type` attribute will be one of either "text_field" or "single_select_field". When it is set to "single_select_field" the `metaterm_options` array  will be populated with available choices. When it is set to "text_field" any input is acceptable and the `metaterm_options` array will be empty.
-
-```json
-{
-  "name": "Rock Stars",
-  "description": null,
-  "created_on": "2019-06-25T18:56:14.000Z",
-  "updated_on": "2019-06-26T21:40:26.000Z",
-  "id": 8,
-  "terms": [
-     {
-          "name": "Favorite Rolling Stones Member",
-          "position": 1,
-          "meta_name": "",
-          "display_in_download": null,
-          "field_type": "single_select_field",
-          "metaterm_options": [
-              {
-                  "id": 6,
-                  "metaterm_id": 48,
-                  "value": "Keith Richards",
-                  "position": 1,
-                  "created_at": "2019-06-25T18:57:44.000Z",
-                  "updated_at": "2019-06-25T18:57:44.000Z",
-                  "deleted_at": 0
-              },
-              {
-                  "id": 7,
-                  "metaterm_id": 49,
-                  "value": "Mick Jagger",
-                  "position": 2,
-                  "created_at": "2019-06-25T18:58:44.000Z",
-                  "updated_at": "2019-06-25T18:58:44.000Z",
-                  "deleted_at": 0
-              }
-          ],
-          "created_on": "2019-06-25T18:57:44.000Z",
-          "updated_on": "2019-06-25T19:33:45.000Z",
-          "id": 48
-      }
+  "name":"<file_type_name1>",
+  "description":"",
+  "created_on":"2008-05-18T20:16:52Z",
+  "updated_on":"2013-01-07T17:06:14Z",
+  "id":"<file_type_id>",
+  "terms":
+    [
+      {
+        "name":"<metaterm_name1>",
+        "position":1,
+        "meta_name":"",
+        "display_in_download":null,
+        "field_type": "text_field",
+        "metaterm_options": [],
+        "created_on":"2012-06-08T12:44:38Z",
+        "updated_on":"2012-06-08T12:44:38Z",
+        "id":"<term_id>"
+       },
+       {
+         "name":"<metaterm_name2>",
+         "position":2,
+         "meta_name":"",
+         "display_in_download":null,
+         "field_type": "text_field",
+         "metaterm_options": [],
+         "created_on":"2012-06-08T12:44:38Z",
+         "updated_on":"2012-06-08T12:44:38Z",
+         "id":"<term_id>"
+       },
     ]
 }
 ```
+
+Create File Type
+-------------
+
+_**COMING SOON**_

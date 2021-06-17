@@ -25,7 +25,7 @@ curl -u username:password \
 Authentication
 --------------
 
-To test things out and get started, you can use __HTTP Basic authentication__ with the IR API. In production, though, you should use an __API Key__ for authentication. That way you don't have to worry about storing Image Relay usernames and passwords in your own application. 
+To test things out and get started, you can use __HTTP Basic authentication__ with the IR API. In production, though, you should use an __API Key__ for authentication. That way you don't have to worry about storing Image Relay usernames and passwords in your own application.
 
 [Read our Authentication docs](https://github.com/imagerelay/API/blob/master/sections/authentication.md) for more detailed information regarding API Key and Basic authentication.
 
@@ -33,8 +33,7 @@ To test things out and get started, you can use __HTTP Basic authentication__ wi
 Identify your app
 -----------------
 
-You must include a `User-Agent` header with the name of your application and a link to it or your email address so 
-we can get in touch in case you're doing something wrong or something great. Here's an example:
+You must include a `User-Agent` header with the name of your application and a link to it or your email address so we can get in touch in case you're doing something wrong or something great. Here's an example:
 
     User-Agent: MyCompany (http://www.mycompany.com)
 
@@ -58,6 +57,7 @@ APIs
 * [Permissions](https://github.com/imagerelay/api/blob/master/sections/permissions.md)
 * [Quick Links](https://github.com/imagerelay/api/blob/master/sections/quick_links.md)
 * [Uploads](https://github.com/imagerelay/api/blob/master/sections/uploads.md)
+* [Nested Uploads](https://github.com/imagerelay/api/blob/master/sections/nested_uploads.md)
 * [Upload Links](https://github.com/imagerelay/api/blob/master/sections/upload_links.md)
 * [Users](https://github.com/imagerelay/api/blob/master/sections/users.md)
 * [Webhooks](https://github.com/imagerelay/api/blob/master/sections/webhooks.md)
@@ -71,7 +71,7 @@ Errors
 The actions you can access in the API are dependant upon the permission levels assigned to your Image Relay account.
 For instance, not all users are permitted to upload files or create folders, or see a list of users. If you find yourself
 receiving "401 Unauthorized" errors, please confirm your permission level with your Image Relay Administrator.
- 
+
 If you find a typo or an error in the documentation, we welcome pull requests. You can also [submit an issue](https://github.com/imagerelay/API/issues) (will require a github account) and we will look into it.
 
 If you have questions or trouble implementing the API, you can reach out to support@imagerelay.com and we'll help you out.
@@ -85,7 +85,7 @@ Status Code Explanations
 * 405: Unknown HTTP method - we only support standard HTTP requests, please double-check your request verb
 * 429: Too many requests (throttling) – slow down your request frequency
 * 502: Under heavy load – slow down your request frequency
-* 5xx: Server error - please double-check your JSON payload for formatting errors, data integrity, etc. 
+* 5xx: Server error - please double-check your JSON payload for formatting errors, data integrity, etc.
 
 Want to Chat?
 -------------

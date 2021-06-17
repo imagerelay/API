@@ -16,7 +16,7 @@ Most integrations should use an API Key to authenticate with the Image Relay API
 Once you've generated an API key and copied it somewhere safe, you can use that key to authenticate with the Image Relay API by including an __Authorization__ header with your API requests like this:
 
 ```
-Authorization: Bearer [your api key]
+Authorization: Bearer <your_api_key>
 ```
 
 Basic Auth
@@ -41,7 +41,7 @@ If you are integrating the Image Relay API into a web application that will auth
 
 1. Register your application with Image Relay. You need an Image Relay account to do this. Once logged in to IR, click on "My Account" in the upper right corner. Select "Developers" from the menu on the left. You'll need to provide your application name and a callback URI. Please note - you need a __paid__ Image Relay account to do this.
 
- - The callback URI specified in the configuration must point to a web service or something that is capable of receiving a web request. The request will contain a code that you will use to exchange for an authorization token. https://webhook.site/ is a nice alternative if you are setting this up for the first time. **NOTE** If you use the webhook site, make sure to copy the URL from the page, _not your address bar_. 
+ - The callback URI specified in the configuration must point to a web service or something that is capable of receiving a web request. The request will contain a code that you will use to exchange for an authorization token. https://webhook.site/ is a nice alternative if you are setting this up for the first time. **NOTE** If you use the webhook site, make sure to copy the URL from the page, _not your address bar_.
 
 2. To begin the process of obtaining an OAuth token, visit the authorization endpoint in a web browser - https://<YOUR_IR_SUBDOMAIN>.imagerelay.com/oauth/authorize...... Below is an example of the full constructed URL.
 
@@ -59,7 +59,7 @@ If you are integrating the Image Relay API into a web application that will auth
 
         Authorization: OAuth THE_ACCESS_TOKEN
 
-7. Once you get an access token, try it out, you can make a request to get information about the user that just authorized you, by making an authenticated request to 
+7. Once you get an access token, try it out, you can make a request to get information about the user that just authorized you, by making an authenticated request to
 
 		GET https://<YOUR_IR_SUBDOMAIN>.imagerelay.com/api/v2/users/me.json
 
